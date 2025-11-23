@@ -1,0 +1,65 @@
+@use 'variables';
+
+* {
+    font-family: Poppins, sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6, p {
+    color: var(--text-color);
+}
+
+.page,
+.page-content {
+    margin: 0;
+}
+
+body {
+    background-color: var(--background-color);
+
+    .section {
+        display: flex;
+        justify-content: center;
+
+        .section-inner {
+            width: 100%;
+            max-width: min(100%, variables.$tablet-breakpoint);
+            padding: 0px 15px;
+        }
+    }
+}
+
+@media(min-width: variables.$tablet-breakpoint) {
+    body {
+        .section {
+            .section-inner {
+                max-width: min(100%, variables.$desktop-breakpoint);
+            }
+        }
+    }
+}
+
+@media(min-width: variables.$desktop-breakpoint) {
+    body {
+        .section {
+            .section-inner {
+                max-width: min(100%, 1340px);
+            }
+        }
+    }
+}
+
+// Icons
+.i-chevron {
+    border-style: solid;
+    border-width: 0 3px 3px 0;
+    border-color: initial;
+    display: inline-block;
+    padding: 3px;
+    position: relative;
+
+    &.down {
+        transform: rotate(45deg);
+        -webkit-transform: rotate(45deg);
+        bottom: 0.2em;
+    }
+}

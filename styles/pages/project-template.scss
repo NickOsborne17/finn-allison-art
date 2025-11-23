@@ -1,0 +1,49 @@
+.project-content {
+    background-color: var(--background-color);
+    padding: 60px 0px;
+    
+    .project-header {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 2rem 1rem;
+        text-align: center;
+        
+        .project-title {
+            font-size: 2.5rem;
+            margin: 0;
+            color: var(--text-color);
+        }
+    }
+
+    .project-body {
+        // Text content constrained
+        p {
+            font-size: 18px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            padding: 0 1rem;
+            color: var(--text-color);
+        }
+
+        // Full-width images
+        .wp-block-image {
+            width: 100%;
+            max-width: none;
+            margin: 2rem 0;
+
+            img {
+                width: 100%;
+                height: auto;
+                display: block;
+            }
+        }
+
+        // Full-width galleries
+        .wp-block-gallery {
+            width: 100%;
+            max-width: none;
+            margin: 2rem 0;
+        }
+    }
+}

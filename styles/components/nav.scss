@@ -1,0 +1,205 @@
+@use '../variables';
+
+// Variables
+$menu-gap: 2rem;
+$logo-max-width: 115px;
+
+.logo-circle {
+    fill: var(--primary-color);
+}
+
+// Mobile Navigation Container
+.site-header {
+    position: sticky;
+    top: 0;
+    z-index: 9999;
+
+    .main-navigation {
+        position: relative;
+        height: 66px;
+        background-color: var(--primary-color);
+
+        .mobile-nav-header {
+            display: flex;
+            justify-content: end;
+            align-items: center;
+            padding: 0.5rem 2rem;
+            height: 100%;
+
+            @media (min-width: variables.$tablet-breakpoint) {
+                display: none;
+            }
+        }
+
+        .mobile-logo {
+            position: absolute;
+            left: 0;
+            top: -1em;
+            z-index: 999;
+
+            .brand-nav {
+                max-width: 100px;
+            }
+        }
+
+        #menu-toggle {
+            background: none;
+            border: none;
+            padding: 0.5rem;
+            cursor: pointer;
+            width: 30px;
+            height: 24px;
+            position: relative;
+            transition: all 0.3s ease;
+
+            // Hamburger lines
+            span {
+                display: block;
+                position: absolute;
+                height: 3px;
+                width: 100%;
+                background: var(--text-color);
+                border-radius: 3px;
+                opacity: 1;
+                left: 0;
+                transition: all 250ms ease-in-out, opacity 100ms linear;
+
+                &:nth-child(1) {
+                    top: 0;
+                }
+
+                &:nth-child(2) {
+                    top: 10px;
+                }
+
+                &:nth-child(3) {
+                    top: 20px;
+                }
+            }
+
+            &.active {
+                span:nth-child(1) {
+                    top: 10px;
+                    transform: rotate(135deg);
+                }
+
+                span:nth-child(2) {
+                    opacity: 0;
+                }
+
+                span:nth-child(3) {
+                    top: 10px;
+                    transform: rotate(-135deg);
+                }
+            }
+        }
+
+        @media (min-width: variables.$tablet-breakpoint) {
+            height: 80px;
+        }
+    }
+}
+
+.admin-bar .site-header {
+    top: 32px;
+}
+
+// Desktop logo styles
+.main-navigation {
+    .desktop-logo {
+        display: none;
+        text-decoration: none;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        width: fit-content;
+        z-index: 9999;
+
+        .brand-nav {
+            max-width: $logo-max-width;
+        }
+    }
+
+    // Menu list styles
+    .menu-list {
+        display: flex;
+        flex-direction: column;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        position: absolute;
+        z-index: 999;
+        background-color: var(--primary-color);
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease;
+
+        &.active {
+            max-height: 500px;
+        }
+
+        li {
+            padding: 0.5rem 1rem;
+
+            &:last-child {
+                border-bottom: none;
+            }
+
+            a {
+                font-size: 18px;
+                text-decoration: none;
+                color: var(--text-color);
+                display: block;
+            }
+        }
+
+        // Desktop: Split menu with centered image
+        @media (min-width: variables.$tablet-breakpoint) {
+            // flex-direction: row;
+            // justify-content: center;
+            // align-items: center;
+            // gap: $menu-gap;
+            // padding: 0 2rem;
+            // max-height: none;
+            // overflow: visible;
+            // position: relative;
+
+            // li.before-logo {
+            //     margin-right: 2rem;
+            // }
+
+            // li.after-logo {
+            //     margin-left: 2rem;
+            // }
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            padding: 0 2rem;
+            max-height: none;
+            overflow: visible;
+            position: relative;
+
+            li.before-logo {
+                padding-right: calc(1rem + ($logo-max-width / 2));
+            }
+
+            li.after-logo {
+                padding-left: calc(1rem + ($logo-max-width / 2));
+            }
+        }
+    }
+}
+
+// Show desktop logo on tablet and up
+@media (min-width: variables.$tablet-breakpoint) {
+    .site-header .main-navigation {
+        display: flex;
+        align-items: center;
+        position: relative;
+
+        .desktop-logo {
+            display: block;
+        }
+    }
+}

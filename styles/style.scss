@@ -1,0 +1,12 @@
+@use 'variables';
+@use 'fonts';
+
+@use 'general';
+@use 'components/filters.scss';
+@use 'components/nav.scss';
+@use 'components/footer.scss';
+@use 'components/button.scss';
+@use 'pages/homepage';
+@use 'pages/gallery';
+@use 'pages/project-template';
+@use 'pages/not-found';

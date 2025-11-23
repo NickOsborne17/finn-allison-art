@@ -1,0 +1,7 @@
+{
+    "name": "oz/finnallison",
+    "minimum-stability": "stable",
+    "require": {
+        "htmlburger/carbon-fields": "^3.6"
+    }
+}

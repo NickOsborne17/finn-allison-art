@@ -1,0 +1,16 @@
+.button {
+    background-color: var(--accent-color);
+    color: var(--primary-color);
+    padding: 10px 14px;
+    border-radius: 10px;
+    text-decoration: none;
+    transition: background-color 0.3s;
+
+    &:visited, &:hover {
+        color: var(--primary-color);
+    }
+
+    &:hover {
+        background-color: var(--secondary-color);
+    }
+}
