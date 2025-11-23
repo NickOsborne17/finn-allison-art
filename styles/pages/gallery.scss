@@ -67,8 +67,8 @@
 
 @media(min-width: variables.$tablet-breakpoint) {
     .gallery-feed {
-        padding: 0px 50px;
-        
+        padding: 50px 30px;
+
         .feed-container {
             .feed-grid {
                 grid-template-columns: 1fr 1fr;
