@@ -1,0 +1,23 @@
+# Node modules and npm
+node_modules/
+npm-debug.log
+package-lock.json
+
+# Composer dependencies
+/vendor/
+
+# OS files
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Temporary files
+*.tmp
+*.temp
+*.swp
+*.swo
+*~
+
+# Environment files
+.env
+.env.local
