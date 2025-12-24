@@ -3,7 +3,7 @@ const sass = require('gulp-sass')(require('sass'));
 const cleanCSS = require('gulp-clean-css');
 const sourcemaps = require('gulp-sourcemaps');
 const concat = require('gulp-concat');
-const terser = require('gulp-terser');
+const webpack = require('webpack-stream');
 
 const paths = {
   styles: {
@@ -12,7 +12,8 @@ const paths = {
     dest: 'styles/dist'
   },
   scripts: {
-    src: 'js/*.js',
+    entry: './js/main.js',
+    watch: 'js/*.js',
     dest: 'js/dist'
   }
 };
@@ -28,17 +29,34 @@ function styles() {
 }
 
 function scripts() {
-  return gulp.src(paths.scripts.src)
-    .pipe(sourcemaps.init())
-    .pipe(concat('scripts.min.js'))
-    .pipe(terser())
-    .pipe(sourcemaps.write('.'))
+  return gulp.src(paths.scripts.entry)
+    .pipe(webpack({
+      mode: 'production',
+      output: {
+        filename: 'scripts.min.js'
+      },
+      module: {
+        rules: [
+          {
+            test: /\.js$/,
+            exclude: /node_modules/,
+            use: {
+              loader: 'babel-loader',
+              options: {
+                presets: ['@babel/preset-env']
+              }
+            }
+          }
+        ]
+      },
+      devtool: 'source-map'
+    }))
     .pipe(gulp.dest(paths.scripts.dest));
 }
 
 function watch() {
   gulp.watch(paths.styles.watch, styles);
-  gulp.watch(paths.scripts.src, scripts);
+  gulp.watch(paths.scripts.watch, scripts);
 }
 
 exports.styles = styles;

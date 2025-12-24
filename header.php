@@ -3,6 +3,13 @@
  * The header for our theme
  */
 
+$logo = <<<EOD
+	<svg class="brand-nav" width="100%" height="100%" viewBox="0 0 220 220" xmlns="http://www.w3.org/2000/svg">
+		<circle class="logo-circle" cx="110" cy="110" r="110"/>
+		<image href="/wp-content/uploads/2025/10/logo.png" x="33.5" y="36.5" width="153" height="175"/>
+	</svg>
+EOD;
+
 ?>
 <!doctype html>
 <html <?php language_attributes(); ?>>
@@ -23,10 +30,7 @@
 			<div class="mobile-nav-header">
 				<div class="mobile-logo">
 					<a href="<?php echo esc_url(home_url('/')); ?>">
-						<svg class="brand-nav" width="100%" height="100%" viewBox="0 0 220 220" xmlns="http://www.w3.org/2000/svg">
-							<circle class="logo-circle" cx="110" cy="110" r="110"/>
-							<image href="/wp-content/uploads/2025/10/logo.png" x="33.5" y="36.5" width="153" height="175"/>
-						</svg>
+						<?php echo $logo; ?>
 					</a>
 				</div>
 				<button id="menu-toggle" aria-label="Toggle menu">
@@ -38,10 +42,7 @@
 
 			<!-- Desktop centered logo -->
 			<a href="<?php echo esc_url(home_url('/')); ?>" class="desktop-logo">
-				<svg class="brand-nav" width="100%" height="100%" viewBox="0 0 220 220" xmlns="http://www.w3.org/2000/svg">
-					<circle class="logo-circle" cx="110" cy="110" r="110"/>
-					<image href="/wp-content/uploads/2025/10/logo.png" x="33.5" y="36.5" width="153" height="175"/>
-				</svg>
+				<?php echo $logo; ?>
 			</a>
 
 			<!-- Menu -->

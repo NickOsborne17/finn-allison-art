@@ -21,6 +21,16 @@ function crb_load_custom_fields() {
     require_once(__DIR__ . '/inc/custom-fields/colours.php');
     require_once(__DIR__ . '/inc/custom-fields/social.php');
     require_once(__DIR__ . '/inc/custom-fields/theme-options.php');
+    require_once(__DIR__ . '/inc/custom-fields/home.php');
+}
+
+add_action('admin_head', 'custom_carbon_fields_css');
+function custom_carbon_fields_css() {
+    echo '<style>
+        .postbox-container .cf-container .cf-field {
+            border-top: none !important;
+        }
+    </style>';
 }
 
 /**
@@ -58,8 +68,19 @@ function underscores_child_enqueue_scripts() {
     }
 
 	// Custom Scripts
-	wp_enqueue_style( 'style-main', get_stylesheet_directory_uri() . '/styles/dist/style.min.css', array(), _S_VERSION );
-    wp_enqueue_script( 'script-main', get_stylesheet_directory_uri() . '/js/dist/scripts.min.js', array(), null, true );
+	wp_enqueue_style( 
+        'style-main', 
+        get_stylesheet_directory_uri() . '/styles/dist/style.min.css', 
+        array(), 
+        filemtime( get_stylesheet_directory() . '/styles/dist/style.min.css' )
+    );
+    wp_enqueue_script( 
+        'script-main', 
+        get_stylesheet_directory_uri() . '/js/dist/scripts.min.js', 
+        array(), 
+        filemtime( get_stylesheet_directory() . '/js/dist/scripts.min.js' ), 
+        true 
+    );
 
     // Enqueue generated CSS
     $css_info = crb_get_generated_css_info();

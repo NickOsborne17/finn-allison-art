@@ -1,4 +1,4 @@
-// import CustomDropdown from './custom-dropdown';
+import CustomDropdown from './custom-dropdown';
 
 class GalleryItem {
     constructor(data) {
@@ -76,7 +76,7 @@ class GalleryFeed {
 
     async loadGalleryItems() {
         try {
-            const data = await fetch('/wp-json/wp/v2/projects?_embed').then(response => response.json());
+            const data = await fetch('/wp-json/wp/v2/projects?_embed&per_page=100').then(response => response.json());
             this.galleryItems = data.map(item => new GalleryItem(item));
             this.filteredGalleryItems = [...this.galleryItems];
         } catch (error) {
@@ -236,6 +236,7 @@ class GalleryFeed {
     }
 }
 
-const galleryFeed = new GalleryFeed();
-        
-window.galleryFeed = galleryFeed;
+if(document.body.classList.contains('page-template-template-gallery')) {
+    const galleryFeed = new GalleryFeed();
+    window.galleryFeed = galleryFeed;
+}

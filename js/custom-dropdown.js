@@ -168,3 +168,5 @@ class CustomDropdown {
         document.removeEventListener('click', this.documentClickHandler);
     }
 }
+
+export default CustomDropdown;

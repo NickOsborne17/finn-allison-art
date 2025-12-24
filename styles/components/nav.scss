@@ -156,22 +156,6 @@ $logo-max-width: 115px;
 
         // Desktop: Split menu with centered image
         @media (min-width: variables.$tablet-breakpoint) {
-            // flex-direction: row;
-            // justify-content: center;
-            // align-items: center;
-            // gap: $menu-gap;
-            // padding: 0 2rem;
-            // max-height: none;
-            // overflow: visible;
-            // position: relative;
-
-            // li.before-logo {
-            //     margin-right: 2rem;
-            // }
-
-            // li.after-logo {
-            //     margin-left: 2rem;
-            // }
             flex-direction: row;
             justify-content: center;
             align-items: center;
