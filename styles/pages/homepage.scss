@@ -33,13 +33,14 @@
                 display: block;
                 width: 250px;
                 border-bottom: 2px solid #FFF;
+                margin: auto;
             }
 
             .hero-caption {
                 font-size: 24px;
                 letter-spacing: 3px;
                 color: var(--accent-color);
-                margin: 0;
+                margin: 6px 0 0;
             }
         }
     }
@@ -70,23 +71,28 @@
 
 .hero-logo {
     display: none;
+    width: 115px;
+    max-width: 100%;
+    position: fixed;
+    top: 42%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: all 0.3s ease;
+    z-index: 99999;
 
     @media(min-width:variables.$tablet-breakpoint) {
         display: block;
-        width: 115px;
-        max-width: 100%;
-        position: fixed;
-        top: 42%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        transition: all 0.3s ease;
-        z-index: 99999;
     }
 }
 
 .home-bio {
     min-height: calc(100vh - 124px);
     padding: 80px 5% 40px;
+
+    &>.section-inner {
+        display: flex;
+        align-items: center;
+    }
 
     .bio-container {
         width: 776px;
@@ -95,6 +101,12 @@
         display: flex;
         flex-direction: column;
         align-items: center;
+        gap: 20px;
+
+        @media(min-width:variables.$tablet-breakpoint) {
+            flex-direction: row;
+            gap: 40px;
+        }
 
         .bio-image {
             width: 100%;
@@ -106,6 +118,10 @@
 
             p {
                 line-height: 1.3rem;
+            }
+
+            *:first-child {
+                margin-top: 0;
             }
         }
     }

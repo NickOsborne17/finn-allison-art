@@ -17,9 +17,9 @@ get_header();
     <div class="section home-hero">
         <div class="section-inner home-hero-content">
             <div class="hero-text">
-                <h1 class="hero-heading">Finn Allison</h1>
+                <h1 class="hero-heading">FINN ALLISON</h1>
                 <span class="line"></span>
-                <p class="hero-caption">Art Portfolio</p>
+                <p class="hero-caption">ART PORTFOLIO</p>
             </div>
         </div>
         <div class="home-hero-background" style="background-image: url('<?php echo esc_url($hero_image); ?>');">
