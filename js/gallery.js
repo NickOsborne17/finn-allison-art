@@ -96,7 +96,8 @@ class GalleryFeed {
         const galleryFeedHTML = this.filteredGalleryItems.map(
             item => this.renderGalleryItem(item)
         ).join('');
-        galleryFeed.innerHTML = `<div class="feed-grid">${galleryFeedHTML}</div>`;
+        galleryFeed.innerHTML = galleryFeedHTML;
+        // galleryFeed.innerHTML = `<div class="feed-grid">${galleryFeedHTML}</div>`;
     }
 
     renderGalleryItem(item) {

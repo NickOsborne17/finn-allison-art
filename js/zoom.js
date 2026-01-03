@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', function() {
         zoom: true,
         initialZoomLevel: 'fit',
         secondaryZoomLevel: 2,
-        maxZoomLevel: 4,
+        maxZoomLevel: 3,
         
         showHideAnimationType: 'zoom'
     });

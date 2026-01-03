@@ -85,8 +85,12 @@
     }
 }
 
+.admin-bar .home-bio {
+    min-height: calc(100vh - 139px - 64px);
+}
+
 .home-bio {
-    min-height: calc(100vh - 124px);
+    min-height: calc(100vh - 139px);
     padding: 80px 5% 40px;
 
     &>.section-inner {
@@ -111,6 +115,10 @@
         .bio-image {
             width: 100%;
             max-width: 200px;
+
+            .profile-image {
+                border-radius: 100%;
+            }
         }
 
         .bio-content {

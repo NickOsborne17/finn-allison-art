@@ -9,8 +9,17 @@
 
 <?php
 $social_links = carbon_get_theme_option('crb_social_links');
-$footer_message = carbon_get_theme_option('crb_footer_message');
 
+function get_footer_message($number) {
+    return [
+        'text' => str_replace('{year}', date('Y'), 
+            carbon_get_theme_option("crb_footer_message_{$number}_text")),
+        'colour' => carbon_get_theme_option("crb_footer_message_{$number}_colour"),
+        'size' => carbon_get_theme_option("crb_footer_message_{$number}_size"),
+    ];
+}
+
+// Social  Links
 if (!empty($social_links)) : ?>
     <ul class="social-links">
         <?php foreach ($social_links as $link) : ?>
@@ -29,8 +38,13 @@ if (!empty($social_links)) : ?>
 <?php endif; ?>
 
 <?php
-if($footer_message){
-    printf('<p class="footer-message">%s</p>', preg_replace('/\{year\}/', date('Y'), $footer_message));
+// Footer text
+for ($i = 1; $i <= 2; $i++) {
+    $message = get_footer_message($i);
+    
+    if (!empty($message['text'])) {
+        echo "<p style='color: {$message['colour']}; font-size: {$message['size']}'>{$message['text']}</p>";
+    }
 }
 ?>
 
