@@ -19,7 +19,7 @@ require_once(__DIR__ . '/inc/generate-css.php');
 add_action('carbon_fields_register_fields', 'crb_load_custom_fields');
 function crb_load_custom_fields() {
     require_once(__DIR__ . '/inc/custom-fields/colours.php');
-    require_once(__DIR__ . '/inc/custom-fields/social.php');
+    require_once(__DIR__ . '/inc/custom-fields/footer.php');
     require_once(__DIR__ . '/inc/custom-fields/theme-options.php');
     require_once(__DIR__ . '/inc/custom-fields/home.php');
 }
@@ -32,6 +32,25 @@ function custom_carbon_fields_css() {
         }
     </style>';
 }
+
+// Disable default Gutenberg lightbox
+add_filter('render_block_core/image', function($block_content) {
+    // Remove lightbox trigger attributes
+    $block_content = preg_replace('/data-wp-on--click="[^"]*"/', '', $block_content);
+    $block_content = preg_replace('/data-wp-on-async--click="[^"]*"/', '', $block_content);
+    $block_content = preg_replace('/data-wp-context="[^"]*"/', '', $block_content);
+    return $block_content;
+}, 10, 1);
+
+// Change lightbox background to black
+function custom_gutenberg_styles() {
+    echo '<style>
+        .wp-lightbox-overlay {
+            background-color: #000 !important;
+        }
+    </style>';
+}
+add_action('wp_head', 'custom_gutenberg_styles');
 
 /**
  * Admin scripts and styles.
@@ -275,3 +294,66 @@ function add_menu_split_classes($classes, $item, $args, $depth) {
     return $classes;
 }
 add_filter('nav_menu_css_class', 'add_menu_split_classes', 10, 4);
+
+function photoswipe_image_block_markup( $block_content, $block ) {
+    // Only target core image blocks
+    if ( $block['blockName'] !== 'core/image' ) {
+        return $block_content;
+    }
+    
+    // Future: Check for custom attribute here when JS toggle is added
+    // For now, apply to all image blocks
+    
+    // Parse the block content
+    $dom = new DOMDocument();
+    libxml_use_internal_errors( true );
+    $dom->loadHTML( mb_convert_encoding( $block_content, 'HTML-ENTITIES', 'UTF-8' ), LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD );
+    libxml_clear_errors();
+    
+    // Find the img element
+    $img = $dom->getElementsByTagName( 'img' )->item( 0 );
+    
+    if ( ! $img ) {
+        return $block_content;
+    }
+    
+    // Get image data
+    $attachment_id = $block['attrs']['id'] ?? null;
+    
+    if ( ! $attachment_id ) {
+        return $block_content;
+    }
+    
+    // Get full size image URL and dimensions
+    $full_image = wp_get_attachment_image_src( $attachment_id, 'full' );
+    
+    if ( ! $full_image ) {
+        return $block_content;
+    }
+    
+    list( $full_url, $full_width, $full_height ) = $full_image;
+    
+    // Create PhotoSwipe wrapper link
+    $link = $dom->createElement( 'a' );
+    $link->setAttribute( 'href', esc_url( $full_url ) );
+    $link->setAttribute( 'data-pswp-width', $full_width );
+    $link->setAttribute( 'data-pswp-height', $full_height );
+    
+    // Get the figure element (Gutenberg wraps images in figure)
+    $figure = $dom->getElementsByTagName( 'figure' )->item( 0 );
+    
+    if ( $figure ) {
+        // Clone the img element
+        $img_clone = $img->cloneNode( true );
+        
+        // Insert link before img, then move img inside link
+        $img->parentNode->insertBefore( $link, $img );
+        $link->appendChild( $img_clone );
+        $img->parentNode->removeChild( $img );
+    }
+    
+    // Return modified HTML
+    return $dom->saveHTML();
+}
+
+add_filter( 'render_block', 'photoswipe_image_block_markup', 10, 2 );

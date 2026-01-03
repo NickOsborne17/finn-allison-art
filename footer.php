@@ -9,6 +9,7 @@
 
 <?php
 $social_links = carbon_get_theme_option('crb_social_links');
+$footer_message = carbon_get_theme_option('crb_footer_message');
 
 if (!empty($social_links)) : ?>
     <ul class="social-links">
@@ -27,7 +28,11 @@ if (!empty($social_links)) : ?>
     </ul>
 <?php endif; ?>
 
-<p>Copyright &copy; Finn Allison 2024</p>
+<?php
+if($footer_message){
+    printf('<p class="footer-message">%s</p>', preg_replace('/\{year\}/', date('Y'), $footer_message));
+}
+?>
 
 </footer>
 
