@@ -154,7 +154,7 @@ $logo-max-width: 115px;
             }
         }
 
-        // Desktop: Split menu with centered image
+        // Desktop: Split menu with centered image and hover effects
         @media (min-width: variables.$tablet-breakpoint) {
             flex-direction: row;
             justify-content: center;
@@ -164,12 +164,50 @@ $logo-max-width: 115px;
             overflow: visible;
             position: relative;
 
-            li.before-logo {
-                padding-right: calc(1rem + ($logo-max-width / 2));
-            }
+            li {
+                a {
+                    overflow: hidden;
+                    position: relative;
+                    padding: 0.2em 0;
 
-            li.after-logo {
-                padding-left: calc(1rem + ($logo-max-width / 2));
+                    &::after {
+                        content: '';
+                        position: absolute;
+                        bottom: 0;
+                        left: 0;
+                        width: 100%;
+                        height: 0.1em;
+                        background-color: hsl(from var(--accent-color) h s calc(l * 1.2));
+                        opacity: 0;
+                        transition: opacity 300ms, transform 300ms;
+                    }
+
+                    &:hover::after {
+                        opacity: 1;
+                        transform: translate3d(0, 0, 0) !important;
+                    }
+                }
+
+                &.before-logo {
+                    padding-right: calc(1rem + ($logo-max-width / 2));
+
+                    a::after {
+                        transform: translate3d(100%, 0, 0);
+                    }
+                }
+
+                &.after-logo {
+                    padding-left: calc(1rem + ($logo-max-width / 2));
+
+                    a::after {
+                        transform: translate3d(-100%, 0, 0);
+                    }
+                }
+
+                &.current-menu-item a::after {
+                    opacity: 1;
+                    transform: translate3d(0, 0, 0) !important;
+                }
             }
         }
     }

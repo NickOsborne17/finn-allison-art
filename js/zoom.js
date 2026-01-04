@@ -11,9 +11,10 @@ document.addEventListener('DOMContentLoaded', function() {
         bgOpacity: 1,
         
         zoom: true,
+        wheelToZoom: true,
         initialZoomLevel: 'fit',
-        secondaryZoomLevel: 2,
-        maxZoomLevel: 3,
+        // secondaryZoomLevel: 1,
+        maxZoomLevel: 1,
         
         showHideAnimationType: 'zoom'
     });
