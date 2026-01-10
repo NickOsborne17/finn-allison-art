@@ -37,16 +37,18 @@ if (!empty($social_links)) : ?>
     </ul>
 <?php endif; ?>
 
+<div class="footer-message">
 <?php
 // Footer text
 for ($i = 1; $i <= 2; $i++) {
     $message = get_footer_message($i);
     
     if (!empty($message['text'])) {
-        echo "<p style='color: {$message['colour']}; font-size: {$message['size']}'>{$message['text']}</p>";
+        echo "<p style='color: {$message['colour']};'>{$message['text']}</p>";
     }
 }
 ?>
+</div>
 
 </footer>
 

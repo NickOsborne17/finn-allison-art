@@ -2,14 +2,9 @@
 use Carbon_Fields\Field;
 
 function crb_footer_fields() {
-    $font_sizes = array_combine(
-        $sizes = ['6px', '7px', '8px', '9px', '10px', '11px', '12px', '13px', '14px', '15px', '16px', '17px', '18px', '20px', '22px', '24px'],
-        $sizes
-    );
-    
     $separator = '<hr style="margin: 25px 0; border: none; border-top: 1px solid #ddd;">';
     
-    $create_message_fields = function($number) use ($font_sizes, $separator) {
+    $create_message_fields = function($number) use ($separator) {
         return [
             Field::make('html', "crb_footer_sep_{$number}")
                 ->set_html($separator),
@@ -21,10 +16,7 @@ function crb_footer_fields() {
             Field::make('color', "crb_footer_message_{$number}_colour", __('Text Colour'))
                 ->set_help_text('Text colour')
                 ->set_default_value('#333333'),
-            
-            Field::make('select', "crb_footer_message_{$number}_size", __('Text Alignment'))
-                ->add_options($font_sizes)
-                ->set_default_value('14px'),
+        
         ];
     };
     

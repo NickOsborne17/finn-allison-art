@@ -22,7 +22,7 @@
         .filter-button {
             background: none;
             border: 2px solid var(--primary-color);
-            border-radius: 0;
+            border-radius: variables.$border-radius;
             color: var(--text-color);
             text-transform: uppercase;
 

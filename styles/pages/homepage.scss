@@ -1,5 +1,15 @@
 @use '../variables';
 
+// html:has(>.page-template-template-home) {
+//     scroll-snap-type: y mandatory;
+//     scroll-behavior: smooth;
+
+//     .section {
+//         scroll-snap-align: start;
+//         scroll-snap-stop: always;
+//     }
+// }
+
 .home-hero {
     position: relative;
 

@@ -15,6 +15,8 @@
 
         .gallery-item {
             width: 100%;
+            border-radius: variables.$border-radius;
+            overflow: hidden;
 
             &.loading {
                 padding-top: 100%;
@@ -56,7 +58,7 @@
                     .gallery-item-tags {
                         display: none;
                         color: #A2A2A2;
-                        font-size: 20px;
+                        font-size: 16px;
                     }
                 }
             }
@@ -69,7 +71,7 @@
         padding: 50px 30px;
 
         .feed-container {
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: repeat(2, 1fr);
 
             .gallery-item {
                 .gallery-item-link {
@@ -114,7 +116,7 @@
 
                         .gallery-item-tags {
                             display: block;
-                            line-height: 1.2em;
+                            line-height: 1.4em;
                         }
                     }
                 }
@@ -126,7 +128,7 @@
 @media(min-width: variables.$desktop-breakpoint) {
     .gallery-feed {
         .feed-container {
-            grid-template-columns: 1fr 1fr 1fr;
+            grid-template-columns: repeat(3, 1fr)
         }
     }
 }

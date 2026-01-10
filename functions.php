@@ -177,6 +177,10 @@ function register_projects_post_type() {
         'publicly_queryable'    => true,
         'capability_type'       => 'post',
         'show_in_rest'          => true,
+        // 'rewrite'     => array(
+		// 	'slug'       => 'gallery',
+		// 	'with_front' => false,
+		// ),
     );
     
     register_post_type('projects', $args);
@@ -248,6 +252,64 @@ function register_projects_post_type() {
     }
 }
 add_action('init', 'register_projects_post_type', 0);
+
+// Regester custom block styles
+function register_custom_block_styles() {
+    // Groups
+    register_block_style(
+        'core/group',
+        array(
+            'name'  => 'width-750',
+            'label' => 'Standard Width (750px)',
+            'is_default' => true,
+        )
+    );
+
+    register_block_style(
+        'core/group',
+        array(
+            'name'  => 'width-1300',
+            'label' => 'Wide Width (1300px)',
+        )
+    );
+
+    // Images
+    register_block_style(
+        'core/image',
+        array(
+            'name'  => 'width-750',
+            'label' => 'Standard Width (750px)',
+            'is_default' => true,
+        )
+    );
+
+    register_block_style(
+        'core/image',
+        array(
+            'name'  => 'width-1300',
+            'label' => 'Wide Width (1300px)',
+        )
+    );
+
+    // Groups
+    register_block_style(
+        'core/gallery',
+        array(
+            'name'  => 'width-750',
+            'label' => 'Standard Width (750px)',
+            'is_default' => true,
+        )
+    );
+
+    register_block_style(
+        'core/gallery',
+        array(
+            'name'  => 'width-1300',
+            'label' => 'Wide Width (1300px)',
+        )
+    );
+}
+add_action('init', 'register_custom_block_styles', 0);
 
 // Remove default image sizes
 add_filter( 'intermediate_image_sizes', 'remove_default_img_sizes', 10, 1);
