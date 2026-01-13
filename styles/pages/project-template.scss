@@ -62,10 +62,12 @@
     }
 
     .project-pagination {
+        padding-top: 30px;
+
         .pagination-controls {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            display: grid;
+            grid-template-columns: max-content auto max-content;
+            gap: 1.2rem;
 
             a {
                 color: var(--accent-color);
@@ -77,32 +79,57 @@
                 gap: 12px;
                 letter-spacing: 3px;
 
-                &:not(:nth-child(2)) {
+                &[rel=next], &[rel=prev] {
                     background-color: var(--primary-color);
-                    padding: 19px;
+                    padding: 14px;
                     border-radius: variables.$border-radius;
+
                     .pag-btn-text {
                         display: none;
-                        
-                        @media(min-width: variables.$tablet-breakpoint) {
+                    }
+
+                    @media(min-width: variables.$tablet-breakpoint) {
+                        padding: 19px;
+
+                        .pag-btn-text {
                             display: block;
                         }
                     }
                 }
 
-                &:last-child {
-                    text-align: right;
+                &[rel=next] {
+                    grid-column: 1;
                 }
 
+                &[rel=prev] {
+                    grid-column: 3;
+                    justify-content: flex-end;
+
+                    .pag-btn-text {
+                        text-align: right;
+                    }
+                }
+            }
+
+            .pag-btn-back {
+                grid-column: 2;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                text-align: center;
+            }
+        }
+    }
+
+    @media(min-width: variables.$tablet-breakpoint) {
+        padding-top: 50px;
+        
+        .pagination-controls {
+            grid-template-columns: 320px auto 320px;
+
+            a {
                 .pag-btn-link {
-                    border-width: 0 3px 3px 0;
                     padding: 6px;
-                    bottom: 0px;
-                }
-
-                .pag-btn-text {
-                    display: inline-block;
-                    max-width: 230px;
                 }
             }
         }

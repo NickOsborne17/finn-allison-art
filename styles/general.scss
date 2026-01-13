@@ -82,11 +82,11 @@ body {
     &.left {
         transform: rotate(135deg);
         -webkit-transform: rotate(135deg);
-        bottom: 0.2em;
+        left: .1em;
     }
     &.right {
         transform: rotate(315deg);
         -webkit-transform: rotate(315deg);
-        bottom: 0.2em;
+        right: .1em;
     }
 }

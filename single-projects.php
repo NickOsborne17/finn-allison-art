@@ -47,15 +47,15 @@ get_header();
                 <?php the_content(); ?>
             </div>
 
-            <?php /*
             <div class="section project-pagination">
                 <div class="section-inner pagination-controls">
                     <?php next_post_link('%link', '<span class="i-chevron left pag-btn-link"></span> <span class="pag-btn-text">%title</span>'); ?>
-                    <a href="#">BACK TO GALLERY</a>
+                    <div class="pag-btn-back">
+                        <a href="<?php echo get_page_link(10); ?>">BACK TO GALLERY</a>
+                    </div>
                     <?php previous_post_link('%link', '<span class="pag-btn-text">%title</span> <span class="i-chevron right pag-btn-link"></span>'); ?>
                 </div>
             </div>
-            */ ?>
 
         </article>
 
