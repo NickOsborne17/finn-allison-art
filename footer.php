@@ -6,7 +6,8 @@
 ?>
 
 <footer>
-
+<div class="section">
+<div class="section-inner footer-content">
 <?php
 $social_links = carbon_get_theme_option('crb_social_links');
 
@@ -19,27 +20,8 @@ function get_footer_message($number) {
     ];
 }
 
-// Social  Links
-if (!empty($social_links)) : ?>
-    <ul class="social-links">
-        <?php foreach ($social_links as $link) : ?>
-            <li>
-                <a href="<?php echo esc_url($link['url']); ?>" 
-                   target="_blank" 
-                   rel="noopener noreferrer"
-                   <?php if (!empty($link['label'])) : ?>
-                       aria-label="<?php echo esc_attr($link['label']); ?>"
-                   <?php endif; ?>>
-                    <i class="<?php echo esc_attr($link['icon']); ?>"></i>
-                </a>
-            </li>
-        <?php endforeach; ?>
-    </ul>
-<?php endif; ?>
-
-<div class="footer-message">
-<?php
 // Footer text
+echo '<div class="footer-message">';
 for ($i = 1; $i <= 2; $i++) {
     $message = get_footer_message($i);
     
@@ -47,9 +29,31 @@ for ($i = 1; $i <= 2; $i++) {
         echo "<p style='color: {$message['colour']};'>{$message['text']}</p>";
     }
 }
-?>
-</div>
+echo '</div>';
 
+// Social  Links
+if (!empty($social_links)) : ?>
+    <div class="social-links-container">
+        <p>Get in touch:</p>
+        <ul class="social-links">
+            <?php foreach ($social_links as $link) : ?>
+                <li>
+                    <a href="<?php echo esc_url($link['url']); ?>" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    <?php if (!empty($link['label'])) : ?>
+                        aria-label="<?php echo esc_attr($link['label']); ?>"
+                    <?php endif; ?>>
+                        <i class="<?php echo esc_attr($link['icon']); ?>"></i>
+                    </a>
+                </li>
+            <?php endforeach; ?>
+        </ul>
+    </div>
+<?php endif; ?>
+
+</div>
+</div>
 </footer>
 
 <?php wp_footer(); ?>
