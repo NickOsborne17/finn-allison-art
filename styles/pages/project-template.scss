@@ -66,7 +66,7 @@
 
         .pagination-controls {
             display: grid;
-            grid-template-columns: max-content auto max-content;
+            grid-template-columns: 1fr minmax(auto, 240px) 1fr;
             gap: 1.2rem;
 
             a {
@@ -83,6 +83,7 @@
                     background-color: var(--primary-color);
                     padding: 14px;
                     border-radius: variables.$border-radius;
+                    width: fit-content;
 
                     .pag-btn-text {
                         display: none;
@@ -99,15 +100,16 @@
 
                 &[rel=next] {
                     grid-column: 1;
+                    justify-self: end;
+
+                    .pag-btn-text {
+                        text-align: right;
+                    }
                 }
 
                 &[rel=prev] {
                     grid-column: 3;
                     justify-content: flex-end;
-
-                    .pag-btn-text {
-                        text-align: right;
-                    }
                 }
             }
 
