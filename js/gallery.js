@@ -76,7 +76,7 @@ class GalleryFeed {
 
     async loadGalleryItems() {
         try {
-            const data = await fetch('/wp-json/wp/v2/projects?_embed&per_page=100').then(response => response.json());
+            const data = await fetch('/wp-json/wp/v2/gallery?_embed&per_page=100').then(response => response.json());
             this.galleryItems = data.map(item => new GalleryItem(item));
             this.filteredGalleryItems = [...this.galleryItems];
         } catch (error) {
@@ -237,7 +237,7 @@ class GalleryFeed {
     }
 }
 
-if(document.body.classList.contains('page-template-template-gallery')) {
+if(document.body.classList.contains('post-type-archive-projects')) {
     const galleryFeed = new GalleryFeed();
     window.galleryFeed = galleryFeed;
 }

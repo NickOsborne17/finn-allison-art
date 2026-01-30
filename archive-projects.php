@@ -1,22 +1,19 @@
-<?php /* Template Name: Gallery */
-
+<?php
 get_header();
-
 ?>
+
 <div class="page">
     <div class="section gallery-filter">
         <div class="section-inner filter-container">
             <div id="gallery-filters"></div>
         </div>
     </div>
+
     <div class="section gallery-feed">
         <div id="gallery-feed" class="section-inner feed-container">
             <?php
-            // Generate placeholders
-            $i = 0;
-            while($i < 6) {
+            for ($i = 0; $i < 6; $i++) {
                 echo '<div class="gallery-item loading"></div>';
-                $i++;
             }
             ?>
         </div>
@@ -25,4 +22,3 @@ get_header();
 
 <?php
 get_footer();
-wp_footer();

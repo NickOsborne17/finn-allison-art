@@ -132,7 +132,7 @@ function register_projects_post_type() {
         'singular_name'         => _x('Project', 'Post Type Singular Name', 'underscores_child'),
         'menu_name'             => __('Projects', 'underscores_child'),
         'name_admin_bar'        => __('Project', 'underscores_child'),
-        'archives'              => __('Project Archives', 'finnalunderscores_childlison'),
+        'archives'              => __('Project Archives', 'underscores_child'),
         'attributes'            => __('Project Attributes', 'underscores_child'),
         'parent_item_colon'     => __('Parent Project:', 'underscores_child'),
         'all_items'             => __('All Projects', 'underscores_child'),
@@ -177,10 +177,11 @@ function register_projects_post_type() {
         'publicly_queryable'    => true,
         'capability_type'       => 'post',
         'show_in_rest'          => true,
-        // 'rewrite'     => array(
-		// 	'slug'       => 'gallery',
-		// 	'with_front' => false,
-		// ),
+        'rest_base'             => 'gallery',
+        'rewrite'               => array(
+            'slug'       => 'gallery',
+            'with_front' => false,
+        ),
     );
     
     register_post_type('projects', $args);
@@ -209,7 +210,6 @@ function register_projects_post_type() {
     foreach ($taxonomies as $taxonomy_key => $names) {
         $singular = $names['singular'];
         $plural = $names['plural'];
-        $singular_lower = strtolower($singular);
         $plural_lower = strtolower($plural);
         
         $labels = array(
@@ -245,7 +245,7 @@ function register_projects_post_type() {
             'show_tagcloud'              => true,
             'show_in_rest'               => true,
             'rewrite'                    => array('with_front' => false),
-            'publicly_queryable'         => false,
+            'publicly_queryable'         => true,
         );
         
         register_taxonomy($taxonomy_key, array('projects'), $args);
